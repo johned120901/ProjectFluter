@@ -70,6 +70,7 @@ class _NewsPageState extends State<NewsPage> {
                           Newsint = option['value'];
                           Navigator.pop(context);
                         });
+                        Divider();
                       },
                     ))
                 .toList()

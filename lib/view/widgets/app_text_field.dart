@@ -4,11 +4,13 @@ class AppTextField extends StatelessWidget {
   final String hintText;
   final Widget icon;
   final bool obscureText;
-  const AppTextField({Key key, this.hintText, this.icon, this.obscureText=false}) : super(key: key);
+  final TextEditingController textEditingController;
+  const AppTextField({Key key, this.hintText, this.icon, this.obscureText=false, this.textEditingController}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      controller: textEditingController,
       obscureText: obscureText,
       decoration: InputDecoration(
           prefixIcon: icon,

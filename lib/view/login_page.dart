@@ -5,6 +5,11 @@ import 'package:app1/view/widgets/app_button.dart';
 import 'package:app1/view/widgets/app_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:app1/util/controllerFirebase.dart' as fireBaseAuth;
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -14,9 +19,11 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
+    bool LogButton = false;
     var _Height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
-
+    TextEditingController _textEditingControllerEmail = new TextEditingController();
+    TextEditingController _textEditingControllerPassword = new TextEditingController();
     return Scaffold(
       resizeToAvoidBottomInset: false,
         body: Container(
@@ -88,14 +95,14 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     Align(
                       alignment: Alignment.center,
-                      child: AppTextField(hintText: 'Username', icon: Icon(Icons.person, color: Colors.grey),),
+                      child: AppTextField(hintText: 'Username', icon: Icon(Icons.person, color: Colors.grey), textEditingController: _textEditingControllerEmail,),
                     ),
                     SizedBox(
                       height: _Height*0.02,
                     ),
                     Align(
                       alignment: Alignment.center,
-                      child: AppTextField(hintText: 'Password', icon: Icon(Icons.lock, color: Colors.grey,), obscureText: true,),
+                      child: AppTextField(hintText: 'Password', icon: Icon(Icons.lock, color: Colors.grey,), obscureText: true, textEditingController: _textEditingControllerPassword,),
                     ),
                     SizedBox(
                       height: _Height*0.01,
@@ -112,7 +119,16 @@ class _LoginPageState extends State<LoginPage> {
                     Align(
                         alignment: Alignment.center,
                         child: AppButton(text: 'LOGIN', onPressed: () {
-                          Navigator.pushReplacementNamed(context, '/news');
+                          setState(() {
+                            LogButton = !LogButton;
+                            if(_textEditingControllerEmail.text.isEmpty || _textEditingControllerPassword.text.isEmpty){
+                              fireBaseAuth.showMaterialDialog(context: context, message: 'Please fill in the fields before continuing');
+                              LogButton = !LogButton;
+                            }else{
+                              fireBaseAuth.signIn(email: _textEditingControllerEmail.text, password: _textEditingControllerPassword.text, context: context);
+                              fireBaseAuth.stateChanges(context);
+                            }
+                          });
                         }))
                   ],
                 ),
@@ -125,7 +141,9 @@ class _LoginPageState extends State<LoginPage> {
               ),
               Expanded(
                   child: SizedBox()),
-              AppButton(text: 'SING UP', onPressed: () {}),
+              AppButton(text: 'SING UP', onPressed: () {
+                Navigator.pushNamed(context, '/singUp');
+              }),
               Expanded(
                   flex: 2,
                   child: SizedBox())
