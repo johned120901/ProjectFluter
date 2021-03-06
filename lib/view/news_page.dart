@@ -46,10 +46,12 @@ class _NewsPageState extends State<NewsPage> {
           style: TextStyle(color: Colors.black26),
         ),
         actions: [
-          Padding(
+          FlatButton(
             padding: const EdgeInsets.only(right: 10),
             child: Icon(Icons.favorite),
-          )
+            onPressed: () => Navigator.pushNamed(context, '/favorite'),
+          ),
+
         ],
       ),
       drawer: Drawer(
@@ -70,7 +72,6 @@ class _NewsPageState extends State<NewsPage> {
                           Newsint = option['value'];
                           Navigator.pop(context);
                         });
-                        Divider();
                       },
                     ))
                 .toList()

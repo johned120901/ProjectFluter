@@ -9,13 +9,13 @@ class ApiService{
     switch (optionUrl){
       //All articles about Tesla from the last month, sorted by recent first
       case 1:
-        return 'https://newsapi.org/v2/everything?q=tesla&from=2021-02-25&sortBy=publishedAt&apiKey=1e31d79a1b5f4cd88a65e61474ef93b7';
+        return 'https://newsapi.org/v2/everything?q=tesla&from=2021-03-06&sortBy=publishedAt&apiKey=1e31d79a1b5f4cd88a65e61474ef93b7';
       //Top business headlines in the US right now
       case 2:
         return 'https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=1e31d79a1b5f4cd88a65e61474ef93b7';
       //All articles mentioning Apple from yesterday, sorted by popular publishers first
       case 3:
-        return 'https://newsapi.org/v2/everything?q=apple&from=2021-02-25&to=2021-02-23&sortBy=popularity&apiKey=1e31d79a1b5f4cd88a65e61474ef93b7';
+        return 'https://newsapi.org/v2/everything?q=apple&from=2021-03-06&to=2021-03-06&sortBy=popularity&apiKey=1e31d79a1b5f4cd88a65e61474ef93b7';
       //Top headlines from TechCrunch right now
       case 4:
         return 'https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=1e31d79a1b5f4cd88a65e61474ef93b7';

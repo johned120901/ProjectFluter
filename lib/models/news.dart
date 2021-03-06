@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class NewsApiModel {
   String status;
   int totalResults;
@@ -23,6 +25,7 @@ class News {
   String publishedAt;
   String content;
   String description;
+  MaterialColor fav;
 
   News({
     this.source,
@@ -32,7 +35,8 @@ class News {
     this.author,
     this.publishedAt,
     this.content,
-    this.description
+    this.description,
+    this.fav
   });
 
   News.fromjson(Map<String, dynamic>map){
@@ -44,6 +48,7 @@ class News {
     urlToImage = map['urlToImage'];
     publishedAt = map['publishedAt'];
     content = map['content'];
+    fav = map['fav'];
   }
 }
 

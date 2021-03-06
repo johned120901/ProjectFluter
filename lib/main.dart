@@ -1,3 +1,4 @@
+import 'package:app1/view/favorite_page.dart';
 import 'package:app1/view/login_page.dart';
 import 'package:app1/view/news_page.dart';
 import 'package:app1/view/register.dart';
@@ -22,7 +23,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: '/login',
+      initialRoute: '/news',
       onGenerateRoute: (settings) {
         switch (settings.name) {
           case '/login':
@@ -31,6 +32,8 @@ class _MyAppState extends State<MyApp> {
             return MaterialPageRoute(builder: (context) => new NewsPage());
           case '/singUp':
             return MaterialPageRoute(builder: (context) => new RegisterUser());
+          case '/favorite':
+            return MaterialPageRoute(builder: (context) => new FavoritePage());
           default:
             return null;
         }
